@@ -5,3 +5,10 @@
     Description:
         This is where any of your application specific styles should be included
 */
+
+header{
+    background-color: #777;
+    color: white;
+    padding: 12px;
+    font-size: 22px;
+}

@@ -40,10 +40,14 @@ requirejs.config({
     }
 });
 
-require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout'],
+require(['ojs/ojcore', 'knockout', 'jquery', 'ojs/ojknockout', 'ojs/ojmodule'],
     function(oj, ko, $) {
         $(function() {
-            function init() {}
+            function init() {
+
+                ko.applyBindings({});
+
+            }
 
             // If running in a hybrid (e.g. Cordova) environment, we need to wait for the deviceready
             // event before executing any code that might interact with Cordova APIs or plugins.
