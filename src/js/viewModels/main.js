@@ -1,37 +1,47 @@
-define(["knockout"], function(ko){
+define(["knockout", "models/denomination", "ojs/ojinputtext"], function(ko, Denomination){
 
-    const bills = {
-        "1000": 0,
-        "500": 0,
-        "200": 0,
-        "100": 0,
-        "50": 0,
-        "20": 0,
-    };
+    var bills = [
+        new Denomination(1000),
+        new Denomination(500),
+        new Denomination(200),
+        new Denomination(100),
+        new Denomination(50),
+        new Denomination(20)
+    ];
 
-    const coins = {
-        "50": 0,
-        "20": 0,
-        "10": 0,
-        "5": 0,
-        "2": 0,
-        "1": 0,
-        ".5": 0,
-        ".2": 0,
-        ".1": 0,
-        ".05": 0
-    };
+    var coins = [
+        new Denomination(50),
+        new Denomination(20),
+        new Denomination(10),
+        new Denomination(5),
+        new Denomination(2),
+        new Denomination(1),
+        new Denomination(0.5),
+        new Denomination(0.2),
+        new Denomination(0.1),
+        new Denomination(0.05)
+    ];
 
-    let total = ko.pureComputed(function(){
+    var total = ko.computed(function(){
 
-        let billsSum = (bills["1000"]*1000) + (bills["500"]*500) + (bills["200"]*200) + (bills["100"]*100) + (bills["50"]*50) + (bills["20"]*20);
+        var billsSum = 0;
 
-        let coinsSum = (coins["50"]*50) + (coins["20"]*20) + (coins["10"]*10) + (coins["5"]*5) + (coins["2"]*2) + (coins["1"]*1) + (coins[".5"]*.5) + (coins[".2"]*.2) + (coins[".1"]*.1) + (coins[".05"]*.05);
+        ko.utils.arrayForEach(bills, function(denomination){
+            billsSum += (Number(denomination.value)*Number(denomination.quantity()));
+        });
 
-        return billsSum + coinsSum;
+        var coinsSum = 0;
+
+        ko.utils.arrayForEach(coins, function(denomination){
+            coinsSum += (Number(denomination.value)*Number(denomination.quantity()));
+        });
+
+        return Number(billsSum) + Number(coinsSum);
     });
 
     return {
+        bills: bills,
+        coins: coins,
         total:total
     };
 });
