@@ -1,3 +1,31 @@
-<h1>
-    Total <strong data-bind="text: total"></strong>
-</h1>
+<div class="oj-panel oj-form-layout oj-sm-6 oj-md-3">
+    <h3 class="oj-header-border">Billetes</h3>
+    <div class="oj-form oj-sm-odd-cols-6 oj-sm-even-cols-6 oj-sm-labels-inline" data-bind="foreach: bills">
+        <div class="oj-flex">
+            <div class="oj-flex-item">
+                <label data-bind="attr:{for: 'bill-' + value}, text: value"></label>
+            </div>
+            <div class="oj-flex-item">
+                <input style="max-width: 4.5em" data-bind="attr:{id: 'bill-' + value}, ojComponent: {component: 'ojInputText', value: quantity}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="oj-panel oj-form-layout oj-sm-6 oj-md-3">
+    <h3 class="oj-header-border">Monedas</h3>
+    <div class="oj-form oj-sm-odd-cols-6 oj-sm-even-cols-6 oj-sm-labels-inline" data-bind="foreach: coins">
+        <div class="oj-flex">
+            <div class="oj-flex-item">
+                <label data-bind="attr:{for: 'coin-' + value}, text: value"></label>
+            </div>
+            <div class="oj-flex-item">
+                <input style="max-width: 4.5em" data-bind="attr:{id: 'coin-' + value}, ojComponent: {component: 'ojInputText', value: quantity}">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="oj-panel oj-panel-alt2 oj-sm-12 oj-md-6">
+    <h1>
+        Total <strong data-bind="text: '$' + total()"></strong>
+    </h1>
+</div>
